@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Data Makanan - Sahabat Gula</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="header-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </div>
+                <div>
+                    <h1 class="card-title">Formulir Input Makanan</h1>
+                    <p class="card-subtitle">Database Makanan Sehat Sahabat Gula</p>
+                </div>
+            </div>
+            
+            <form id="foodForm" class="card-body">
+                <div class="form-group span-2">
+                    <label for="name">Nama Makanan</label>
+                    <input type="text" id="name" name="name" placeholder="cth: Bakso Mercon" required>
+                </div>
+
+                <div class="form-group span-2">
+                    <label for="description">Deskripsi</label>
+                    <textarea id="description" name="description" placeholder="Deskripsi singkat makanan dari sisi kesehatan dan penyajian" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category_id">Kategori</label>
+                    <div class="select-wrapper">
+                        <select id="category_id" name="category_id">
+                            <option value="">Pilih Kategori...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="category_name">Atau Buat Kategori Baru</label>
+                    <input type="text" id="category_name" name="category_name" placeholder="cth: Olahan Ayam">
+                </div>
+
+                <div class="form-group span-2">
+                    <label for="photo_file">Foto Makanan</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="photo_file" name="photo_file" accept="image/*" class="file-input" required>
+                        <div id="fileDropArea" class="file-drop-area">
+                            <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="32" height="32">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25z" />
+                            </svg>                              
+                            <p id="fileDropText" class="file-text">Klik atau drag & drop foto di sini</p>
+                        </div>
+                    </div>
+                    <div id="imagePreviewWrapper" class="image-preview-wrapper">
+                        <img id="imagePreview" class="image-preview" src="#" alt="Pratinjau Gambar">
+                        <button type="button" id="removeImageBtn" class="remove-image-btn" title="Hapus Gambar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <hr class="separator span-2">
+
+                <h3 class="section-title span-2">Informasi Porsi & Berat</h3>
+                <div class="form-group">
+                    <label for="serving_size">Ukuran Porsi</label>
+                    <input type="number" id="serving_size" name="serving_size" placeholder="cth: 1" required>
+                </div>
+                <div class="form-group">
+                    <label for="serving_unit">Satuan Porsi</label>
+                    <input type="text" id="serving_unit" name="serving_unit" placeholder="cth: piring, mangkuk" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight_size">Berat</label>
+                    <input type="number" id="weight_size" name="weight_size" placeholder="cth: 250" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight_unit">Satuan Berat</label>
+                    <input type="text" id="weight_unit" name="weight_unit" placeholder="cth: gr, mg, ml" required>
+                </div>
+
+                <hr class="separator span-2">
+                <h3 class="section-title span-2">Informasi Nutrisi</h3>
+
+                <div class="form-group"><label for="calories">Kalori</label><input type="number" id="calories" name="calories" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="carbs">Karbohidrat (g)</label><input type="number" id="carbs" name="carbs" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="protein">Protein (g)</label><input type="number" id="protein" name="protein" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="fat">Lemak (g)</label><input type="number" id="fat" name="fat" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="sugar">Gula (g)</label><input type="number" id="sugar" name="sugar" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="sodium">Sodium (mg)</label><input type="number" id="sodium" name="sodium" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="fiber">Serat (g)</label><input type="number" id="fiber" name="fiber" step="0.01" placeholder="0.00" required></div>
+                <div class="form-group"><label for="potassium">Kalium (mg)</label><input type="number" id="potassium" name="potassium" step="0.01" placeholder="0.00" required></div>
+
+                <div class="form-footer span-2">
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <span class="spinner"></span>
+                        <span class="btn-text">Simpan Data Makanan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
